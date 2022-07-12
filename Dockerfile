@@ -1,10 +1,13 @@
 FROM alpine:latest
 
-ENV IMAPFILTER_HOME=/volume/configuration
+ARG IMAPFILTER_CONFIG=/config
+ARG IMAPFILTER_LOGS=/logs
 
-VOLUME ${IMAPFILTER_HOME}
+VOLUME ${IMAPFILTER_CONFIG}
+VOLUME ${IMAPFILTER_LOGS}
 
-WORKDIR ${IMAPFILTER_HOME}
+ENV HOME=${IMAPFILTER_CONFIG}
+WORKDIR ${IMAPFILTER_CONFIG}
 
 RUN set -xe \
 	&& addgroup --gid 2000 app \
@@ -14,7 +17,7 @@ RUN set -xe \
 	&& apk update \
 	&& apk upgrade \
 	&& apk add --no-cache \
-		libcrypto1.1 libssl1.1 \
+		libcrypto1.1 libssl1.1 moreutils bash \
 	&& apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
 		imapfilter \
 	&& apk del --progress --purge \
@@ -22,4 +25,6 @@ RUN set -xe \
 
 USER app
 
-ENTRYPOINT ["imapfilter"]
+COPY ./entrypoint.sh /
+
+ENTRYPOINT ["/entrypoint.sh"]
