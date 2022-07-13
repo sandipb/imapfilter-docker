@@ -1,6 +1,6 @@
 # About
 
-[![Main](https://github.com/sandipb/imapfilter-docker/actions/workflows/main.yml/badge.svg)](https://github.com/sandipb/imapfilter-docker/actions/workflows/main.yml)
+[![Main](https://github.com/sandipb/imapfilter-docker/actions/workflows/main.yml/badge.svg)](https://github.com/sandipb/imapfilter-docker/actions/workflows/main.yml) [![Docker Pulls](https://img.shields.io/docker/pulls/sandipb/imapfilter.svg)](https://hub.docker.com/r/sandipb/imapfilter/)
 
 This image runs [imapfilter](https://github.com/lefcha/imapfilter), a tool for email filtering. It serves similar
 purposes as [Sieve](http://sieve.info/), but no server-side support is required.
