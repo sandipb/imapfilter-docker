@@ -17,7 +17,7 @@ RUN set -xe \
 	&& apk update \
 	&& apk upgrade \
 	&& apk add --no-cache \
-		libcrypto1.1 libssl1.1 moreutils bash \
+		libcrypto1.1 libssl1.1 moreutils bash wget curl \
 	&& apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
 		imapfilter \
 	&& apk del --progress --purge \

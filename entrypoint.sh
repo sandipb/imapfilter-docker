@@ -33,8 +33,8 @@ exec 3>&1
 
 # https://www.linuxjournal.com/content/bash-redirections-using-exec
 if [[ -n $IMAPFILTER_LOG_DIR ]];then
-    npipe_stdout=/tmp/stdout-$$.tmp
-    npipe_stderr=/tmp/stderr-$$.tmp
+    npipe_stdout=/tmp/imapfilter-stdout-$$-${RANDOM}.tmp
+    npipe_stderr=/tmp/imapfilter-stderr-$$-${RANDOM}.tmp
     mknod $npipe_stdout p
     mknod $npipe_stderr p
 
