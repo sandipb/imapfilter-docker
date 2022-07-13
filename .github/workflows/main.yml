@@ -49,6 +49,7 @@ jobs:
             ${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest
+            type=semver,pattern={{version}}
             type=match,pattern=v(.*),group=1
 
       - name: Build and push Docker image
