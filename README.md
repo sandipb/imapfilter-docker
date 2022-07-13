@@ -35,4 +35,6 @@ The behavior of `imapfilter` can be customized by setting the following environm
 - `IMAPFILTER_LOG_DIR`: Path to a directory where the `imapfilter` process will write its stdout and stderr output.
   Specifically, in `${IMAPFILTER_LOG_DIR}/imapfilter-stdout.log` and `${IMAPFILTER_LOG_DIR}/imapfilter-errors.log`
   respectively.
+  
+  **Note:** When using this feature, it is best to mount a [`tmpfs` filesystem](https://docs.docker.com/storage/tmpfs/) on `/tmp` by passing the parameter `--tmpfs /tmp` to `docker run`. This avoids reusing tmp space in the container across invocations and possible clash of temporary files.
 - `IMAPFILTER_EXTRA_ARGS`: Any extra parameters that you would like to add to the `imapfilter` invocation.
