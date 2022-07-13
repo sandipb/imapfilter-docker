@@ -38,3 +38,13 @@ The behavior of `imapfilter` can be customized by setting the following environm
   
   **Note:** When using this feature, it is best to mount a [`tmpfs` filesystem](https://docs.docker.com/storage/tmpfs/) on `/tmp` by passing the parameter `--tmpfs /tmp` to `docker run`. This avoids reusing tmp space in the container across invocations and possible clash of temporary files.
 - `IMAPFILTER_EXTRA_ARGS`: Any extra parameters that you would like to add to the `imapfilter` invocation.
+
+## imapfilter resources
+
+These are some resources I found useful for writing imapfilter rules:
+- imapfilter configuration man page: <https://linux.die.net/man/5/imapfilter_config>
+- Official imapfilter sample recipes: <https://github.com/lefcha/imapfilter/tree/master/samples>
+- <https://moiristo.wordpress.com/2008/11/18/sorting-imap-mail-with-imapfilter/>
+- <https://www.npcglib.org/~stathis/blog/2012/07/09/linux-task-sorting-mail-with-imapfilter/>
+- <https://raymii.org/s/blog/Filtering_IMAP_mail_with_imapfilter.html>
+- <https://ineed.coffee/Old+Posts/Imapfilter+for+remote+rules+to+an+IMAP>
