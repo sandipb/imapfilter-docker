@@ -39,6 +39,39 @@ The behavior of `imapfilter` can be customized by setting the following environm
   **Note:** When using this feature, it is best to mount a [`tmpfs` filesystem](https://docs.docker.com/storage/tmpfs/) on `/tmp` by passing the parameter `--tmpfs /tmp` to `docker run`. This avoids reusing tmp space in the container across invocations and possible clash of temporary files.
 - `IMAPFILTER_EXTRA_ARGS`: Any extra parameters that you would like to add to the `imapfilter` invocation.
 
+## Local development
+
+Build the image locally:
+
+```shell-session
+$ make build
+```
+
+The `Makefile` uses Docker by default. To use Podman or another compatible command:
+
+```shell-session
+$ make BUILD_CMD=podman build
+```
+
+Run the local image against a config directory:
+
+```shell-session
+$ make run CONFIG_DIR=/etc/imapfilter
+```
+
+Local runs enable `IMAPFILTER_DRY_RUN=yes`, `IMAPFILTER_VERBOSE=yes`, and `IMAPFILTER_CONFIG_DIR=/config` by default.
+To test log redirection, provide a host log directory:
+
+```shell-session
+$ make run CONFIG_DIR=/etc/imapfilter LOG_DIR=/tmp/imapfilter-logs
+```
+
+After changing the packaged `imapfilter` version, update the version file from the built image:
+
+```shell-session
+$ make update-version
+```
+
 ## imapfilter resources
 
 These are some resources I found useful for writing imapfilter rules:
