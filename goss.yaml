@@ -1,0 +1,25 @@
+command:
+  bash-present:
+    exec: bash --version
+    exit-status: 0
+
+  ts-present:
+    exec: sh -lc 'command -v ts'
+    exit-status: 0
+
+  imapfilter-version:
+    exec: "sh -lc 'test \"$(/usr/bin/imapfilter -V 2>&1 | awk '\\''{print $2}'\\'')\" = \"{{ .Vars.imapfilter_version }}\"'"
+    exit-status: 0
+
+  entrypoint-version:
+    exec: sh -lc 'IMAPFILTER_EXTRA_ARGS=-V /entrypoint.sh 2>&1'
+    exit-status: 0
+    stdout:
+      - "Running: /usr/bin/imapfilter  -V"
+      - "IMAPFilter {{ .Vars.imapfilter_version }}"
+
+file:
+  /entrypoint.sh:
+    exists: true
+  /usr/bin/imapfilter:
+    exists: true

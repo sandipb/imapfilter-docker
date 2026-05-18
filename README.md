@@ -53,6 +53,24 @@ The `Makefile` uses Docker by default. To use Podman or another compatible comma
 $ make BUILD_CMD=podman build
 ```
 
+The image is built on Alpine `3` and installs `imapfilter` from Alpine `edge/testing`, because `imapfilter` is not currently available in the stable Alpine repositories.
+
+Run the container validation suite with `dgoss`:
+
+```shell-session
+$ make test
+```
+
+This requires `dgoss` to be installed locally and validates that the container contains the expected tooling, reports the version tracked in `IMAPFILTER_VERSION`, and can invoke `imapfilter` through the packaged entrypoint.
+
+On macOS, `dgoss` needs a Linux `goss` binary because it copies `goss` into the test container and executes it there. The `Makefile` defaults to `/Users/sandipb/bin/goss-linux-arm64` on Apple Silicon. Override `DGOSS_GOSS_PATH` if your local setup uses a different location or architecture.
+
+By default, `make test` validates the image for the local Docker host architecture. To exercise a specific Docker platform explicitly, pass `TEST_PLATFORM`, for example:
+
+```shell-session
+$ make test BUILD_EXTRA_ARGS="--platform linux/arm64" TEST_PLATFORM=linux/arm64
+```
+
 Run the local image against a config directory:
 
 ```shell-session
