@@ -53,7 +53,7 @@ The `Makefile` uses Docker by default. To use Podman or another compatible comma
 $ make BUILD_CMD=podman build
 ```
 
-The image is built on Alpine `3` and installs `imapfilter` from Alpine `edge/testing`, because `imapfilter` is not currently available in the stable Alpine repositories.
+The image is built on Alpine `3.23` and installs `imapfilter` from Alpine `edge/testing`, because `imapfilter` is not currently available in the stable Alpine repositories.
 
 Run the container validation suite with `dgoss`:
 
@@ -89,6 +89,33 @@ After changing the packaged `imapfilter` version, update the version file from t
 ```shell-session
 $ make update-version
 ```
+
+## For developers
+
+### Renovate configuration
+
+The repository Renovate config lives in `renovate.json`.
+
+Its current scope is intentionally narrow:
+
+- GitHub Actions updates from `.github/workflows/main.yml`
+- Dockerfile base image updates for `FROM alpine:3.23`
+
+The current configuration is supposed to behave like this:
+
+- Renovate is enabled only for the `github-actions` and `dockerfile` managers.
+- GitHub Actions updates are grouped into a single pull request named `github actions`.
+- GitHub Actions releases must be at least 30 days old before Renovate proposes them.
+- Alpine base image updates follow the `major.minor` precision in the Dockerfile, so the expected Dockerfile update is a minor-line change such as `alpine:3.23` to `alpine:3.24`.
+- Renovate should not widen the Alpine tag to a patch release such as `3.23.4`.
+- Renovate should not propose Alpine `4.x` updates.
+
+The configuration is not intended to:
+
+- manage `IMAPFILTER_VERSION`
+- update packages installed inside the Docker image
+- automate repository release tags or packaging revision bumps
+- scan other file types or dependency managers in this repository
 
 ## imapfilter resources
 
