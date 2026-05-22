@@ -1,4 +1,4 @@
-FROM alpine:3
+FROM alpine:3.23
 
 ARG IMAPFILTER_CONFIG=/config
 ARG IMAPFILTER_LOGS=/logs

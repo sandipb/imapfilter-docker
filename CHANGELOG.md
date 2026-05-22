@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [v2.8.2-2] - 2026-05-22
+
+### Changed
+
+- Added a Renovate configuration for grouped GitHub Actions updates with a 30-day minimum release age.
+- Pinned the Dockerfile base image to Alpine `3.23` so future releases can deliberately adopt new Alpine `3.x` minor versions.
+- Documented the Renovate maintenance workflow and its scope for developers.
+
+## [v2.8.2-1] - 2026-05-18
 
 ### Changed
 
